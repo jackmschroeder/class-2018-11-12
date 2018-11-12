@@ -1,0 +1,38 @@
+---
+title: "functions"
+author: "Jack Schroeder"
+date: "11/12/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(dplyr)
+library(knitr)
+library(stringr)
+library(lubridate)
+library(janitor)
+library(kableExtra)
+library(fs)
+library(foreign)
+
+better_election_function <- function(district,wave){
+  
+  district <- tolower(district)
+  stopifnot( is.character(district))
+  x<- paste("https://raw.githubusercontent.com/TheUpshot/2018-live-poll-results/master/data/elections-poll-", district, "-", wave, ".csv", sep="")
+  
+  y <- read_csv(x) %>% 
+    glimpse()
+  
+  invisible(y)
+}
+
+better_election_function("nj07", "3")
+
+
+```
+
+
